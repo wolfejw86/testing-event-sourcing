@@ -1,0 +1,31 @@
+{
+  "roots": ["<rootDir>/__tests__/unit"],
+  "testEnvironment": "node",
+  "modulePaths": [
+    "bin",
+    "handlers",
+    "lib",
+    "/node_modules/"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "mjs"
+  ],
+  "transform": {
+    "^.+\\.m?js$": "babel-jest"
+  },
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
+  "collectCoverageFrom" : [
+    "bin/*.{js,jsx,mjs}",
+    "handlers/*.{js,jsx,mjs}",
+    "lib/**/*.{js,jsx,mjs}"
+  ]
+}  
+  

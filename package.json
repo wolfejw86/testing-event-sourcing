@@ -1,0 +1,48 @@
+{
+  "name": "@servicebus/rabbitbus-model-service-template",
+  "version": "0.0.1",
+  "description": "@servicebus/rabbitbus-model-service-template",
+  "bin": {
+    "healthcheck": "./bin/healthcheck.mjs",
+    "start": "./bin/start.mjs"
+  },
+  "scripts": {
+    "start": "node ./bin/start.mjs",
+    "lint": "eslint bin lib handlers --ext=.js,.mjs",
+    "lint:fix": "eslint --fix bin lib handlers __tests__ --ext=.js,.mjs",
+    "test": "jest --config jest.json --coverage --verbose",
+    "test:staging": "jest --config jest.staging.json --verbose --forceExit",
+    "test:watch": "jest --config jest.json --watch --coverage --verbose",
+    "precommit": "npm run lint",
+    "prepush": "make ci"
+  },
+  "dependencies": {
+    "@servicebus/errortrap": "0.0.7",
+    "@servicebus/rabbitbus-common": "1.0.2",
+    "@servicebus/register-handlers": "1.1.0",
+    "bluebird": "3.7.2",
+    "cconfig": "2.0.2",
+    "llog": "0.2.0",
+    "pino": "6.6.1",
+    "sourced": "2.0.8",
+    "sourced-queued-repo": "1.0.3",
+    "sourced-repo-mongo": "0.6.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "7.11.5",
+    "@babel/preset-env": "7.11.5",
+    "babel-jest": "26.3.0",
+    "debug": "4.2.0",
+    "eslint": "7.9.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "husky": "4.3.0",
+    "jest": "26.4.2",
+    "readable-id-mjs": "1.0.0"
+  },
+  "license": "ISC",
+  "snyk": true
+}

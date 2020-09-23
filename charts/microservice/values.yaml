@@ -1,0 +1,68 @@
+# Default values for node projects.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+  repository: draft
+  tag: dev
+  pullPolicy: IfNotPresent
+service:
+  name: todolist-model-service
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 3000
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
+resources:
+  limits:
+    cpu: 400m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 128Mi
+probePath: /
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+readinessProbe:
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+terminationGracePeriodSeconds: 10
+
+servicebus:
+
+  rabbitmq:
+    host: evil-iguana-rabbitmq.servicebus.svc.cluster.local
+    port: 5672
+    user: user
+    password: apassword
+
+  redis:
+    host: hopping-toad-redis-master.servicebus.svc.cluster.local
+    port: 6379
+    password: apassword
+
+mongodb:
+  ## MongoDB custom user and database
+  ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#creating-a-user-and-database-on-first-run
+  ##
+  mongodbHost: sourced-db-mongodb.todolist.svc.cluster.local
+  mongodbUsername: username
+  mongodbPassword: apassword
+  mongodbDatabase: sourced
+
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  persistence:
+    enabled: true
+    ## If defined, volume.beta.kubernetes.io/storage-class: <storageClass>
+    ## Default: volume.alpha.kubernetes.io/storage-class: default
+    ##
+    # storageClass:
+    accessMode: ReadWriteOnce
+    size: 8Gi
